@@ -39,7 +39,7 @@ const Layout = async ({ children }: LayoutProps) => {
     // console.log(connections)
 
 
-    const unseenReqCount = (await fetchRedis('smembers', `user:${session.user.id}:incoming_connect_requests`) as User).length
+    const unseenReqCount = (await fetchRedis('smembers', `user:${session.user.id}:incoming_connect_requests`) as User[]).length
 
     return <div className='bg-slate-900 text-white w-full flex h-screen'>
         <div className='pt-5 px-5 flex h-full w-full max-w-xs grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white-px-6'>
@@ -83,7 +83,7 @@ const Layout = async ({ children }: LayoutProps) => {
 
 
                     <li>
-                        <ConnectReqSidebar sessionID={session.user.id} initialUnseenRequestCount={unseenReqCount} />
+                        <ConnectReqSidebar sessionId={session.user.id} initialUnseenRequestCount={unseenReqCount} />
                     </li>
 
                     <li className='-mx-6 mt-auto flex items-center'>

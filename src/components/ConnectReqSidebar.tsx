@@ -7,18 +7,18 @@ import Link from 'next/link'
 import { FC, useEffect, useState } from 'react'
 
 interface ConnectReqSidebarProps {
-  sessionID: string,
+  sessionId: string,
   initialUnseenRequestCount:number
 }
 
-const ConnectReqSidebar: FC<ConnectReqSidebarProps> = ({sessionID,initialUnseenRequestCount}) => {
+const ConnectReqSidebar: FC<ConnectReqSidebarProps> = ({sessionId,initialUnseenRequestCount}) => {
   const [unseenRequest,setUnseenRequests] = useState<number>(
     initialUnseenRequestCount
   );
 
   useEffect(() => {
     pusherClient.subscribe(
-      toPusherKey(`user:${sessionID}:incoming_connect_requests`)
+      toPusherKey(`user:${sessionId}:incoming_connect_requests`)
     )
 
     const connectionRequestHandler = () => {
@@ -29,7 +29,7 @@ const ConnectReqSidebar: FC<ConnectReqSidebarProps> = ({sessionID,initialUnseenR
 
     return () => {
       pusherClient.unsubscribe(
-        toPusherKey(`user:${sessionID}:incoming_connect_requests`)
+        toPusherKey(`user:${sessionId}:incoming_connect_requests`)
       )
       pusherClient.unbind('incoming_connect_requests', connectionRequestHandler)
     }

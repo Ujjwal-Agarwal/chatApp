@@ -24,8 +24,8 @@ const ConnectionRequests: FC<ConnectionRequestsProps> = ({ incomingConnectReques
       toPusherKey(`user:${sessionID}:incoming_connect_requests`)
     )
 
-    const connectionRequestHandler = ({ senderId, senderEmail, senderImage }: IncomingConnectRequest) => {
-      setConnReqs((prev) => [...prev, { senderId, senderEmail, senderImage }])
+    const connectionRequestHandler = ({ senderId, senderEmail, senderImage,senderName }: IncomingConnectRequest) => {
+      setConnReqs((prev) => [...prev, { senderId, senderEmail, senderImage,senderName }])
     }
 
     pusherClient.bind('incoming_connect_requests', connectionRequestHandler)
